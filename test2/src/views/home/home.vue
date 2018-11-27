@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <van-nav-bar
-        title="首页"
-    />
+    <van-nav-bar title="首页"/>
     <!-- 轮播 -->
     <van-swipe :autoplay="4000">
          <van-swipe-item v-for="(item,index) in images" :key="index">
@@ -10,12 +8,6 @@
         </van-swipe-item>
     </van-swipe>
     <router-link to="/about">其他</router-link>
-    <div>
-        <!-- <footers :arr="footerArr" @on-change="handleChange"/> -->
-        <van-tabbar v-model="active" @change="itemChange(active)">
-            <van-tabbar-item v-for="(item,index) in footerArr" :icon="item.icon" :key="index">{{item.name}}</van-tabbar-item>
-        </van-tabbar>
-    </div>
   </div>
 </template>
 
@@ -30,35 +22,11 @@ export default {
             'https://img.yzcdn.cn/public_files/2017/09/05/c0dab461920687911536621b345a0bc9.jpg',
             'https://img.yzcdn.cn/public_files/2017/09/05/4e3ea0898b1c2c416eec8c11c5360833.jpg',
             'https://img.yzcdn.cn/public_files/2017/09/05/fd08f07665ed67d50e11b32a21ce0682.jpg'
-        ],
-        footerArr:[
-            {
-                'icon':'shop',
-                'name':'首页'
-            },
-            {
-                'icon':'chat',
-                'name':'其它'
-            },
-            {
-                'icon':'records',
-                'name':'社区'
-            },
-            {
-                'icon':'gold-coin',
-                'name':'个人中心'
-            },
-        ],
-        active:0
+        ]
     }
   },
   methods:{
-        handleChange(arr){
-            console.log(arr)
-        },
-        itemChange(item){
-            // console.log(item)
-        }
+        
   }
 }
 </script>
