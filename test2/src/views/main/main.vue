@@ -1,8 +1,10 @@
 <template>
   <div id="app">
+    
     <van-tabbar v-model="active" @change="itemChange(footerArr[active])">
         <van-tabbar-item v-for="(item,index) in footerArr" :icon="item.icon" :key="index">{{item.name}}</van-tabbar-item>
     </van-tabbar>
+    <router-view/>
   </div>
 </template>
 <script>
@@ -39,6 +41,7 @@ export default {
   },
   methods:{
     itemChange(item){
+       
       switch (item.url){
           case 'home':this.$router.push({name:item.url});
           break;
@@ -55,16 +58,6 @@ export default {
 </script>
 
 <style lang="less">
-  @import url("../../assets/css/reset.css");
-  html,body{
-    width: 100%;
-    height: 100%;
-    font-size: 0.2rem;
-  }
-  #app {
-    width: 100%;
-    height: 100%;
-  }
   .fade-enter {
     opacity:0;
   }

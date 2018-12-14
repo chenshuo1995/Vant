@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import main from '@/views/main/main'
 
 Vue.use(Router)
 
@@ -10,34 +11,6 @@ const login = [
     component:()=>import('./views/login/login.vue')
   }
 ]
-const main = [
-  {
-    path:'/main',
-    name:'main',
-    component:()=>import('./views/main/main.vue'),
-    children:[
-      {
-        path:'home',
-        name:'home',
-        component:()=>import('./views/home/home.vue')
-      },
-      {
-        path:'space',
-        name:'space',
-        component:()=>import('./views/space/space.vue')
-      },
-      {
-        path: 'notes',
-        name: 'notes',
-        component: () => import('./views/notes/notes.vue')
-      }
-    ]
-  },
-  {
-    path:'/',
-    redirect: '/main/home',
-  }
-]
 //首页
 const home = [
   {
@@ -46,7 +19,7 @@ const home = [
     component:()=>import('./views/home/home.vue')
   },
   {
-    path:'/',
+    path:'/home',
     redirect: '/home',
   }
 ]
@@ -66,18 +39,24 @@ const space = [
     component: () => import('./views/notes/notes.vue')
   }
 ]
-
+export const mainRouter = {
+	path: '/',
+	name: 'main',
+	redirect: '/home',
+	component: main,
+	children:[
+    ...home,
+    ...notes,
+    ...login,
+    ...space
+  ]
+}
 const  router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-		...home,
-    ...notes,
-    ...login,
-    ...space
-    // ...main
-  ],
-  
+      mainRouter,
+  ]
 })
 
 export default router
