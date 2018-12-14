@@ -1,7 +1,7 @@
 <template>
   <div class="about">
-    <router-link to="/">首页</router-link>
-    <h1>This is an about page</h1>
+    <router-link to="/home">首页</router-link>
+    <h1>笔记</h1>
   </div>
 </template>
 <script>

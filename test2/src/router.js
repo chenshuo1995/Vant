@@ -10,19 +10,60 @@ const login = [
     component:()=>import('./views/login/login.vue')
   }
 ]
-const home = [
+const main = [
+  {
+    path:'/main',
+    name:'main',
+    component:()=>import('./views/main/main.vue'),
+    children:[
+      {
+        path:'home',
+        name:'home',
+        component:()=>import('./views/home/home.vue')
+      },
+      {
+        path:'space',
+        name:'space',
+        component:()=>import('./views/space/space.vue')
+      },
+      {
+        path: 'notes',
+        name: 'notes',
+        component: () => import('./views/notes/notes.vue')
+      }
+    ]
+  },
   {
     path:'/',
-    name:'home',
-    component:()=>import('./views/home/home.vue')
+    redirect: '/main/home',
   }
 ]
-
- const about = [
+//首页
+const home = [
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('./views/about/about.vue')
+    path:'/home',
+    name:'home',
+    component:()=>import('./views/home/home.vue')
+  },
+  {
+    path:'/',
+    redirect: '/home',
+  }
+]
+//空间
+const space = [
+  {
+    path:'/space',
+    name:'space',
+    component:()=>import('./views/space/space.vue')
+  }
+]
+//笔记
+ const notes = [
+  {
+    path: '/notes',
+    name: 'notes',
+    component: () => import('./views/notes/notes.vue')
   }
 ]
 
@@ -31,9 +72,12 @@ const  router = new Router({
   base: process.env.BASE_URL,
   routes: [
 		...home,
-    ...about,
+    ...notes,
     ...login,
-	]
+    ...space
+    // ...main
+  ],
+  
 })
 
 export default router

@@ -7,7 +7,6 @@
             <img :src="item" width="100%"/>
         </van-swipe-item>
     </van-swipe>
-    <router-link to="/about">其他</router-link>
   </div>
 </template>
 
@@ -34,6 +33,7 @@ export default {
     .home{
         width: 100%;
         height: 100%;
+        background: pink;
     }
     .van-swipe{
         height: 250px;

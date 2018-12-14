@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <transition name="fade"> 
-      <router-view/>
-    </transition>
     <van-tabbar v-model="active" @change="itemChange(footerArr[active])">
         <van-tabbar-item v-for="(item,index) in footerArr" :icon="item.icon" :key="index">{{item.name}}</van-tabbar-item>
     </van-tabbar>
@@ -58,7 +55,7 @@ export default {
 </script>
 
 <style lang="less">
-  @import url("./assets/css/reset.css");
+  @import url("../../assets/css/reset.css");
   html,body{
     width: 100%;
     height: 100%;
