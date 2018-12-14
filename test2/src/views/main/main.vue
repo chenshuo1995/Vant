@@ -37,7 +37,12 @@ export default {
     }
   },
   created(){
-    console.log(this.$route.path)
+    let path = this.$route.path.split("/")[1]
+    this.footerArr.forEach((its,ins)=>{
+        if(its.url == path){
+            this.active = ins
+        }
+    })
   },
   methods:{
     itemChange(item){
