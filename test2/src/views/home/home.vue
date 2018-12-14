@@ -50,5 +50,8 @@ export default {
             }
         }
     }
+    a{
+        font-size: 0.2rem;
+    }
     
 </style>
