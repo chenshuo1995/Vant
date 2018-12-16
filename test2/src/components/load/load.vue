@@ -1,20 +1,21 @@
 <template>
-  <div class="notes">
-    <h1>学习笔记</h1>
-  </div>
+    <div class="load">
+        aa
+    </div>
 </template>
 <script>
 export default {
     data(){
         return{
-            
+
         }
     }
 }
 </script>
 <style lang="less" scoped>
-    .notes{
-        width: 100%;
+    .load{
+        width:100%;
         height: 100%;
+        background: #fff;
     }
 </style>

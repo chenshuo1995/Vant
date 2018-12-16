@@ -1,16 +1,26 @@
 <template>
-  <div id="app">
+  <div class="main">
+    <div class="firstLoad" v-if="loadShow">
+          <span>{{time}}s</span>
+          <div class="center">
+            <div></div>
+            <p>欢迎进入Mr.chen的博客</p>
+          </div>
+          <van-button round @click="jump">点击进入</van-button>
+    </div>
     
     <van-tabbar v-model="active" @change="itemChange(footerArr[active])">
-        <van-tabbar-item v-for="(item,index) in footerArr" :icon="item.icon" :key="index">{{item.name}}</van-tabbar-item>
+      <van-tabbar-item v-for="(item,index) in footerArr" :icon="item.icon" :key="index">{{item.name}}</van-tabbar-item>
     </van-tabbar>
     <router-view/>
+    
   </div>
 </template>
 <script>
 export default {
   data(){
     return{
+      loadShow:true,
       footerArr:[
           {
               'icon':'home',
@@ -33,7 +43,9 @@ export default {
               'url':'login'
           },
       ],
-      active:0
+      active:0,
+      time:3,
+      clock:null
     }
   },
   created(){
@@ -44,9 +56,17 @@ export default {
         }
     })
   },
+  mounted() {
+    this.clock = setInterval(()=>{
+      if(this.time == 0) return
+      this.time--;
+    },1000)
+    setTimeout(()=>{
+      this.loadShow = false;
+    },3000)
+  },
   methods:{
     itemChange(item){
-       
       switch (item.url){
           case 'home':this.$router.push({name:item.url});
           break;
@@ -57,12 +77,58 @@ export default {
           case 'login':this.$router.push({name:item.url});
           break;
       }  
+    },
+    jump(){
+      clearInterval(this.clock)
+      this.loadShow = false;
     }
-  }
+  },
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+  .main{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .firstLoad{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size:0.5rem;
+      span{
+        position: absolute;
+        right: 15px;
+        top: 5px;
+        color: #bbb;
+      }
+      .center{
+        width:55%;
+        div{
+          width: 100%;
+          height: 200px;
+          background: url("../../assets/img/touxiang.jpg") 0 0 no-repeat;
+          background-size: 100% 135%;
+          border-radius: 50%;
+        }
+        p{
+          text-align: center;
+        }
+      }
+    }
+  }
+  .van-button{
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+  }
   .fade-enter {
     opacity:0;
   }

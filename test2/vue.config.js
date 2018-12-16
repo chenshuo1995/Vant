@@ -18,6 +18,9 @@ module.exports = {
             propList: ['*']
           })
         ]
+      },
+      less: {
+        javascriptEnabled: true
       }
     }
   }
