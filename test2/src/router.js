@@ -17,10 +17,6 @@ const home = [
     path:'/home',
     name:'home',
     component:()=>import('./views/home/home.vue')
-  },
-  {
-    path:'/home',
-    redirect: '/home',
   }
 ]
 //空间
@@ -36,7 +32,14 @@ const space = [
   {
     path: '/notes',
     name: 'notes',
-    component: () => import('./views/notes/notes.vue')
+    component: () => import('./views/notes/notes.vue'),
+    children:[
+      {
+        path:'/vueasync',
+        name:'vueasync',
+        component:()=>import('./views/notes/child/vueasync.vue')
+      }
+    ]
   }
 ]
 export const mainRouter = {

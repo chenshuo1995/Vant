@@ -18,10 +18,11 @@ module.exports = {
             propList: ['*']
           })
         ]
-      },
-      less: {
-        javascriptEnabled: true
       }
     }
-  }
+  },
+  // chainWebpack: config => {
+  //     // 修复HMR(热更新)
+  //     config.resolve.symlinks(true);
+  // }
 };
