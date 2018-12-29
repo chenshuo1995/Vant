@@ -20,7 +20,7 @@
 export default {
   data(){
     return{
-      loadShow:true,
+      loadShow:false,
       footerArr:[
           {
               'icon':'home',

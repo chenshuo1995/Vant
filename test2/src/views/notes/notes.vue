@@ -13,6 +13,7 @@
 <script>
 import axios from 'axios'
 import chapter from '@/components/chapter/chapter'
+import notes from '@/api/notes'
 export default {
     components:{
         chapter
@@ -59,6 +60,9 @@ export default {
        
     },
     created(){
+        notes.vueSync("cs/notes/vuesync").then(res=>{
+            // console.log(res)
+        })
     }
 }
 </script>
