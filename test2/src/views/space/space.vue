@@ -1,16 +1,35 @@
 <template>
   <div class="space">
     <p>空间展示</p>
-    <div class="container">
-        <div class="content"></div>
+    <times />
+    <div class="img-wrapper">
+        <!-- <img :src="item.img" alt=""> -->
+        <img v-for="(item,index) in imgList" v-lazy="item.img" :key="index">
     </div>
+    <!-- <div v-for="(item,index) in imgList" :key="index" v-lazy:background-image="item.img" /> -->
   </div>
 </template>
 <script>
+import api from '@/api/api'
+import times from '@/components/time/times'
 export default {
+    components:{
+        times
+    },
     data(){
         return{
-            
+            imgList:[] 
+        }
+    },
+    created(){
+        this.getImg()
+    },
+    methods:{
+        async getImg(){
+            let res = await api.get('cs/space/img')
+            // console.log(res.data.data)
+            this.imgList = res.data.data
+            console.log(this.imgList)
         }
     }
 }
@@ -19,24 +38,15 @@ export default {
     .space{
         width: 100%;
         height: 100%;
+        font-size: 0.5rem;
+        .img-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            img{
+                display: block;
+                width: 50%;
+            }
+        }
     }
-    .container {
-        position: relative;
-        width: 100%;
-        height: 300px;
-        background-color: #5465;
-    }
-    .content {
-        position: absolute;
-        left: 0;
-        top:  0;
-        bottom: 0;
-        right: 0;
-        width: 100px;
-        height: 100px;
-        margin: auto;
-        background-color: #6465;
-    }
-
-
+    
 </style>

@@ -7,13 +7,13 @@
     </van-popup>
     <van-icon name="wap-nav" @click="show = !show" />
     <chapter :content="content" v-if="chapShow" @on-click="chapterClick"></chapter> 
-    <router-view />
+    <router-view v-if="viewShow" />
   </div>
 </template>
 <script>
 import axios from 'axios'
 import chapter from '@/components/chapter/chapter'
-import notes from '@/api/notes'
+import api from '@/api/api'
 export default {
     components:{
         chapter
@@ -21,7 +21,8 @@ export default {
     data(){
         return{
             show:false,
-            chapShow:false,
+            chapShow:true,
+            viewShow:false,
             list:[
                 {name: 'HTML',url:'html'},
                 {name: 'CSS',url:'css'},
@@ -44,13 +45,14 @@ export default {
         handleClick(item,index){
             this.show = false;
             switch (item.url){
-                case 'vue': this.chapShow = true;
+                case 'vue': this.chapShow = true;this.viewShow = false; 
                 break;
             }
         },
         //章节点击
         chapterClick(val){
             this.chapShow = false
+            this.viewShow = true
             this.$router.push({name:val.url})
         },
         async getInfo(){
@@ -60,7 +62,7 @@ export default {
        
     },
     created(){
-        notes.vueSync("cs/notes/vuesync").then(res=>{
+        api.get("cs/notes/vuesync").then(res=>{
             // console.log(res)
         })
     }
